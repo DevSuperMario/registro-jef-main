@@ -54,6 +54,7 @@ function App() {
             <div class="form-login">
               <h3>Login</h3>
               <Login />
+              <a href="#coloca a tela de registro aqui">Não tem conta?</a>
             </div>
 
             <div class='botao'>
