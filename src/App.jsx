@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Login from './components/login'
-import { createTheme, ThemeProvider } from '@mui/material'
-import SvgIcon from '@mui/material/SvgIcon';
+import { useState } from 'react';
+import './App.css';
+import Login from './components/login';
+import { createTheme, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
-import Logo from '../src/assets/GYM.png'
-import Img from '../src/assets/BG.png'
+import Logo from '../src/assets/GYM.png';
+import Img from '../src/assets/BG.png';
+import Register from './Register';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -19,57 +19,60 @@ const theme = createTheme({
       dark: '#480087',
       contrastText: '#242105',
     },
-
     button: {
       main: '#ffffff',
       light: '#8800FF',
-      dark: '#460083',
+      dark: '#C37FFF',
       contrastText: '#8800FF',
     }
   },
+})
 
-});
-
-function App() {
-  const [count, setCount] = useState(0)
-
+function Home() {
   return (
-    <>
-
-    <div class='formulario'>
-      
-      <div class='img-lateral'>
-        <img src={Img}/>
-      </div>
-        
-      <div class='body-form'>
-        <div class='logo'>
-          <img src={Logo}/>
+    <div className='tela'>
+      <div className="gradient"></div>
+      <div className='formulario'>
+        <div className='img-lateral'>
+          <img src={Img} />
         </div>
 
-        <ThemeProvider theme={theme}>
-
-          <div class='login'>
-
-            <div class="form-login">
-              <h3>Login</h3>
-              <Login />
-              <a href="#coloca a tela de registro aqui">Não tem conta?</a>
-            </div>
-
-            <div class='botao'>
-              <Button variant="contained" className='botao' color='button'>Entrar</Button>
-            </div>
-
+        <div className='body-form'>
+          <div className='logo'>
+            <img src={Logo} />
           </div>
 
-        </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <div className='login'>
+              <div className="form-login">
+                <h3>Login</h3>
+                <Login />
+              </div>
 
+              {/* Adicionando Link para a tela de registro */}
+              <Link to="/register">Não tem conta? Cadastre-se!</Link>
+
+              <div className='botao'>
+                <Button variant="contained" className='botao' color='button'>Entrar</Button>
+              </div>
+
+            </div>
+          </ThemeProvider>
+        </div>
       </div>
-
     </div>
-    </>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
