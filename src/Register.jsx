@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import Logo from '../src/assets/GYM.png'
 import Img from '../src/assets/BG.png'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import App from './App.jsx'
+import { Link } from "react-router-dom";
 
 
 
@@ -39,6 +41,7 @@ function Register() {
     <>
 
     <div class='formulario'>
+    <div className="gradient"></div>
       
       <div class='img-lateral'>
         <img src={Img}/>
@@ -49,19 +52,33 @@ function Register() {
           <img src={Logo}/>
         </div>
 
-        <div>
-            <h1>Cadastro</h1>
+        <div class="reg-body-form">
+          <div class="title">
+            <h3>Registre-se</h3>
+          </div>
+          <ThemeProvider theme={theme}>
+            <RegisterForm />
+          </ThemeProvider>
         </div>
 
-        <ThemeProvider theme={theme}>
-          <RegisterForm />
-        </ThemeProvider>
-
+        <Link to="/">Já tem conta? Entre!</Link>
+        
       </div>
       
     </div>
     </>
   )
+}
+
+function Home() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default Register

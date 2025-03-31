@@ -15,6 +15,7 @@
   height: 100vh;
 }
 
+
 /*---------------------------------------*/
 @keyframes rotate {
   0% {
@@ -47,7 +48,7 @@
 }
 
 body {
-  background-color: #8800FF;
+  background-color: black;
   position: absolute;
   inset: 0;
   display: flex;
@@ -65,7 +66,7 @@ body {
 .form-login{
   background-color: #ffffff;
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 0px 0px 4px 4px;
 }
 
 h3{
@@ -128,4 +129,14 @@ a:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.title-log{
+  background-color: #8800FF;
+  color: white;
+  padding: 5px;
+  justify-content: left;
+  width: 28.8vw;
+  border-radius: 4px 4px 0px 0px;
+  margin-top: 20px;
 }

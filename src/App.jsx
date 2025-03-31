@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#8800FF',
+      main: '#8800FF',  
       light: '#AA4AFF',
       dark: '#480087',
       contrastText: '#242105',
@@ -31,7 +31,9 @@ const theme = createTheme({
 function Home() {
   return (
     <div className='tela'>
+      
       <div className="gradient"></div>
+      
       <div className='formulario'>
         <div className='img-lateral'>
           <img src={Img} />
@@ -41,25 +43,25 @@ function Home() {
           <div className='logo'>
             <img src={Logo} />
           </div>
-
+          
           <ThemeProvider theme={theme}>
             <div className='login'>
+              <div class='title-log'>
+                <h3>Entrar</h3>
+              </div>
               <div className="form-login">
-                <h3>Login</h3>
                 <Login />
               </div>
-
-              {/* Adicionando Link para a tela de registro */}
               <Link to="/register">Não tem conta? Cadastre-se!</Link>
-
               <div className='botao'>
                 <Button variant="contained" className='botao' color='button'>Entrar</Button>
               </div>
-
             </div>
           </ThemeProvider>
         </div>
+
       </div>
+
     </div>
   );
 }
