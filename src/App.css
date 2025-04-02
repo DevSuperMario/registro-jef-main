@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
-  color: #8800FF;
+  color: #8f46cf;
   text-align: left;
 }
 
@@ -100,12 +100,15 @@ h3{
   max-width: 20%;
 }
 
-.img-lateral img{
+.img-lateral{
   display: flex;
   justify-content: center;
   align-items: left;
   height: 100vh;
-  width: 50vw;
+  width: 70vw;
+}
+
+.img-lateral img{
   border-radius: 0px 20px 20px 0px;
 }
 
@@ -118,9 +121,6 @@ a{
 a:hover{
   text-decoration: underline;
   color: white;
-  background-color: #8800FF;
-  padding: 10px;
-  border-radius: 5px;
   transition: 0.5s ease-in-out;
 }
 
@@ -131,12 +131,14 @@ a:hover{
   align-items: center;
 }
 
+
 .title-log{
-  background-color: #8800FF;
+  background-color: #8f46cf;
   color: white;
   padding: 5px;
   justify-content: left;
-  width: 28.8vw;
+  width: 96.9%;
   border-radius: 4px 4px 0px 0px;
   margin-top: 20px;
 }
+--------------------------------*/

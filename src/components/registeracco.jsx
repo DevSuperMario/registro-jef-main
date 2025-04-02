@@ -16,29 +16,31 @@ export default function FormPropsTextFields() {
       autoComplete="off"
     >
       
-      <div class="dados-pessoais">
+      <div class="dados-conta">
         <div>
           <div class='title-sec'>
-            <h4>Dados pessoais</h4>
+            <h4>Dados da conta</h4>
             </div>
           <TextField
             required
             id="outlined-required"
-            label="Nome"
+            label="Email"
           />
         </div>
         <div >
           <TextField 
             required
+            type='password'
             id="outlined-required"
-            label="Telefone"
+            label="Senha"
           />
         </div>
         <div >
           <TextField
             required
+            type='password'
             id="outlined-required"
-            label="CPF"
+            label="Repita a senha"
           />
         </div>
       </div>

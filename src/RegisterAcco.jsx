@@ -53,15 +53,15 @@ function Register() {
           <div class="title">
             <h3>Registre-se</h3>
           </div>
-          <h1>teste</h1>
+          <h1>teste2</h1>
           <ThemeProvider theme={theme}>
-            <RegisterForm />
+            <RegisterAcco />
           </ThemeProvider>
 
           <Link to="/">Já tem conta? Entre!</Link>
 
           <div className='botao'>
-            <Button variant="contained" className='botao' color='button'><Link to="/registerAcco">Próximo</Link></Button>
+            <Button variant="contained" className='botao' color='button'>Registrar</Button>
           </div>
           
         </div>

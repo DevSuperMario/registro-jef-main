@@ -7,6 +7,7 @@ import Logo from '../src/assets/GYM.png';
 import Img from '../src/assets/BG.png';
 import Register from './Register';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RegisterAcco from './RegisterAcco.jsx'
 import { Link } from "react-router-dom";
 
 
@@ -45,7 +46,7 @@ function Home() {
           </div>
           
           <ThemeProvider theme={theme}>
-            <div className='login'>
+            <div class='login'>
               <div class='title-log'>
                 <h3>Entrar</h3>
               </div>
@@ -72,6 +73,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/registerAcco" element={<RegisterAcco />} />
       </Routes>
     </Router>
   );
