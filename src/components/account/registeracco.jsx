@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import './login.css'
 import InputMask from 'react-input-mask';
 import { useFormControl } from '@mui/material/FormControl';
-
+import './registeracco.css'
 
 export default function FormPropsTextFields() {
   return (
@@ -16,29 +15,31 @@ export default function FormPropsTextFields() {
       autoComplete="off"
     >
       
-      <div class="dados-pessoais">
+      <div class="dados-conta">
         <div>
           <div class='title-sec'>
-            <h4>Dados pessoais</h4>
+            <h4>Dados da Conta</h4>
             </div>
           <TextField
             required
             id="outlined-required"
-            label="Nome"
+            label="Email"
           />
         </div>
         <div >
           <TextField 
             required
             id="outlined-required"
-            label="Telefone"
+            type="password"
+            label="Senha"
           />
         </div>
         <div >
           <TextField
             required
             id="outlined-required"
-            label="CPF"
+            type="password"
+            label="Repita a senha"
           />
         </div>
       </div>

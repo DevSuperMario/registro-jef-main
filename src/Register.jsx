@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import './Register.css'
-import RegisterForm from './components/registerform'
-import Login from './components/login'
+import RegisterForm from './components/personal/registerform.jsx'
 import { createTheme, ThemeProvider } from '@mui/material'
-import SvgIcon from '@mui/material/SvgIcon';
-import Button from '@mui/material/Button';
 import Logo from '../src/assets/GYM.png'
-import Img from '../src/assets/BG.png'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from './App.jsx'
 import RegisterAcco from './RegisterAcco.jsx'
@@ -53,15 +49,20 @@ function Register() {
           <div class="title">
             <h3>Registre-se</h3>
           </div>
-          <h1>teste</h1>
-          <ThemeProvider theme={theme}>
-            <RegisterForm />
-          </ThemeProvider>
-
-          <Link to="/">Já tem conta? Entre!</Link>
+          
+          <div>
+            <ThemeProvider theme={theme}>
+              <div class="reg-form">
+                <RegisterForm />
+                  <div class="link">
+                    <Link to="/">Já tenho conta!</Link>
+                  </div>
+              </div>
+            </ThemeProvider>
+          </div>
 
           <div className='botao'>
-            <Button variant="contained" className='botao' color='button'><Link to="/registerAcco">Próximo</Link></Button>
+            <Link to="/registerAcco">Próximo</Link>
           </div>
           
         </div>

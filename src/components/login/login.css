@@ -1,10 +1,12 @@
 #outlined-required{
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #E6E6E6;
 }
 
 #outlined-password-input{
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #E6E6E6;
 }
+
+
 

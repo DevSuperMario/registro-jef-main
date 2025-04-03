@@ -1,16 +1,12 @@
 import { useState } from 'react'
-import './Register.css'
-import RegisterForm from './components/registerform'
-import Login from './components/login'
+import './RegisterAcco.css'
 import { createTheme, ThemeProvider } from '@mui/material'
-import SvgIcon from '@mui/material/SvgIcon';
-import Button from '@mui/material/Button';
 import Logo from '../src/assets/GYM.png'
-import Img from '../src/assets/BG.png'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from './App.jsx'
-import RegisterAcco from './RegisterAcco.jsx'
+import RegisterAcco from './components/account/registeracco.jsx'
 import { Link } from "react-router-dom";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 
 
@@ -51,19 +47,16 @@ function Register() {
 
         <div class="reg-body-form">
           <div class="title">
+            <div class="title-icon">
+              <Link to="/register" class="link"><KeyboardArrowLeftIcon/></Link>
+            </div>
             <h3>Registre-se</h3>
           </div>
-          <h1>teste2</h1>
+          
           <ThemeProvider theme={theme}>
             <RegisterAcco />
           </ThemeProvider>
 
-          <Link to="/">Já tem conta? Entre!</Link>
-
-          <div className='botao'>
-            <Button variant="contained" className='botao' color='button'>Registrar</Button>
-          </div>
-          
         </div>
 
       </div>

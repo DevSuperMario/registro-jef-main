@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import './App.css';
-import Login from './components/login';
+import Login from './components/login/login.jsx';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Logo from '../src/assets/GYM.png';
@@ -46,14 +45,18 @@ function Home() {
           </div>
           
           <ThemeProvider theme={theme}>
+            
             <div class='login'>
               <div class='title-log'>
                 <h3>Entrar</h3>
               </div>
               <div className="form-login">
                 <Login />
+                <div class="link">
+                  <Link to="/register">Não tem conta? Cadastre-se!</Link>
+                </div>
               </div>
-              <Link to="/register">Não tem conta? Cadastre-se!</Link>
+              
               <div className='botao'>
                 <Button variant="contained" className='botao' color='button'>Entrar</Button>
               </div>

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import './login.css'
-
+import '../login/login.css'
 export default function FormPropsTextFields() {
   return (
     
@@ -22,7 +21,7 @@ export default function FormPropsTextFields() {
       </div>
       <div>
         <TextField
-          label="Password"
+          label="Senha"
           id="outlined-password-input"
           type="password"
           autoComplete="current-password"
