@@ -2,10 +2,10 @@ import { useState } from 'react';
 import './RegisterAcco.css';
 import { createTheme, ThemeProvider, Button } from '@mui/material';
 import Logo from '../src/assets/GYM.png';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App.jsx';
 import RegisterAccoForm from './components/account/registeracco.jsx';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import Swal from 'sweetalert2';
 
@@ -36,29 +36,33 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailValid, setEmailValid] = useState(false);
 
   const handleRegister = () => {
-    if (email && password && confirmPassword && password === confirmPassword) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Cadastrado com sucesso!',
-        text: 'Sua conta foi registrada com sucesso!',
-        customClass: {
-          popup: 'custom-swal-popup',
-          title: 'custom-swal-title',
-          confirmButton: 'custom-swal-button',
-          icon: 'custom-swal-icon'}
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erro',
-        text: 'Preencha todos os campos corretamente!',
-      });
+    if (!emailValid) {
+      alert('Por favor, insira um email válido!');
+      return;
     }
+
+    if (password !== confirmPassword) {
+      alert('As senhas precisam ser iguais!');
+      return;
+    }
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Cadastrado com sucesso!',
+      text: 'Sua conta foi registrada com sucesso!',
+      customClass: {
+        popup: 'custom-swal-popup',
+        title: 'custom-swal-title',
+        confirmButton: 'custom-swal-button',
+        icon: 'custom-swal-icon'
+      }
+    });
   };
 
-  const isFormValid = email !== '' && password !== '' && confirmPassword !== '' && password === confirmPassword;
+  const isFormValid = email !== '' && password !== '' && confirmPassword !== '';
 
   return (
     <div className='formulario'>
@@ -71,26 +75,27 @@ function Register() {
         <div className="reg-body-form">
           <div className="title">
             <div className="title-icon">
-              <Link to="/register" className="link"><KeyboardArrowLeftIcon/></Link>
+              <Link to="/register" className="link"><KeyboardArrowLeftIcon /></Link>
             </div>
             <h3>Registre-se</h3>
           </div>
 
           <ThemeProvider theme={theme}>
-            <RegisterAccoForm 
+            <RegisterAccoForm
               email={email}
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
               confirmPassword={confirmPassword}
               setConfirmPassword={setConfirmPassword}
+              setEmailValid={setEmailValid}
             />
             <div className='botao'>
-              <Button 
-                variant="contained" 
-                fullWidth 
-                sx={{ borderRadius: '20px' }} 
-                color='secundary' 
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ borderRadius: '20px' }}
+                color='secundary'
                 disabled={!isFormValid}
                 onClick={handleRegister}
               >

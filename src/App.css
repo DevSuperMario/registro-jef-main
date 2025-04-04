@@ -83,11 +83,11 @@ a:hover{
 
 
 .title-log{
-  background: linear-gradient(45deg, #C37FFF, #7438ff);
+  background: rgba(0, 0, 0, 0.452);
   color: white;
   padding: 5px;
   justify-content: left;
-  width: 96.9%;
+  width: 97.1%;
   border-radius: 4px 4px 0px 0px;
   margin-top: 20px;
 }

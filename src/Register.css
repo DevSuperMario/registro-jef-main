@@ -18,7 +18,7 @@
 
 .title{
     color: white;
-    background: linear-gradient(45deg, #C37FFF, #7438ff);
+    background: rgba(0, 0, 0, 0.452);
     /*background-image: #8f46cf;*/
     padding: 5px;
     border-radius: 4px 4px 0px 0px;

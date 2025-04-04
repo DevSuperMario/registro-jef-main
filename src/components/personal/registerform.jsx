@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import '../login/login.css';
 
+
 export default function RegisterForm({ nome, setNome, telefone, setTelefone, cpf, setCpf }) {
   
   const formatCPF = (value) => {

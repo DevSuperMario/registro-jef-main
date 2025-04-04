@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterAcco from './RegisterAcco.jsx'
 import { Link } from "react-router-dom";
 
-
-
 const theme = createTheme({
   palette: {
     primary: {

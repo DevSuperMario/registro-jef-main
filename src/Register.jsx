@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import './Register.css';
 import RegisterForm from './components/personal/registerform.jsx';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, Button } from '@mui/material';
 import Logo from '../src/assets/GYM.png';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import App from './App.jsx';
-import RegisterAcco from './RegisterAcco.jsx';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
 
 const theme = createTheme({
   palette: {
@@ -36,8 +33,20 @@ function Register() {
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [cpf, setCpf] = useState('');
+  const navigate = useNavigate();
 
-  const isFormValid = nome.trim() !== '' && telefone.trim() !== '' && cpf.trim() !== '';
+  const isValidCPF = cpf.length === 14;
+  const isValidTelefone = telefone.length === 15;
+  const isFormFilled = nome.trim() !== '' && telefone !== '' && cpf !== '';
+
+  const handleNext = () => {
+    if (!isValidTelefone || !isValidCPF) {
+      window.alert('Por favor, verifique se o telefone e o CPF estão preenchidos corretamente.');
+      return;
+    }
+
+    navigate('/registerAcco');
+  };
 
   return (
     <div className="formulario">
@@ -45,7 +54,7 @@ function Register() {
 
       <div className="body-form">
         <div className="logo">
-          <img src={Logo} />
+          <img src={Logo} alt="Logo" />
         </div>
 
         <div className="reg-body-form">
@@ -66,13 +75,12 @@ function Register() {
 
               <div className="botao">
                 <Button 
-                  variant="contained" 
-                  color="secundary" 
-                  disabled={!isFormValid} 
-                  component={Link} 
-                  to="/registerAcco"
+                  variant="contained"
+                  color="secundary"
                   fullWidth
                   sx={{ borderRadius: '20px' }}
+                  onClick={handleNext}
+                  disabled={!isFormFilled}
                 >
                   Próximo
                 </Button>
@@ -82,11 +90,8 @@ function Register() {
                 <Link to="/">Já tenho conta!</Link>
               </div>
             </div>
-
           </ThemeProvider>
         </div>
-
-        
       </div>
     </div>
   );
