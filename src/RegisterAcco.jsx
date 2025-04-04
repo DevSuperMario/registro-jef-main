@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import './RegisterAcco.css'
-import { createTheme, ThemeProvider } from '@mui/material'
-import Logo from '../src/assets/GYM.png'
+import { useState } from 'react';
+import './RegisterAcco.css';
+import { createTheme, ThemeProvider, Button } from '@mui/material';
+import Logo from '../src/assets/GYM.png';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import App from './App.jsx'
-import RegisterAcco from './components/account/registeracco.jsx'
+import App from './App.jsx';
+import RegisterAccoForm from './components/account/registeracco.jsx';
 import { Link } from "react-router-dom";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-
-
+import Swal from 'sweetalert2';
 
 const theme = createTheme({
   palette: {
@@ -18,52 +17,91 @@ const theme = createTheme({
       dark: '#480087',
       contrastText: '#242105',
     },
-
     button: {
       main: '#ffffff',
       light: '#8800FF',
       dark: '#C37FFF',
       contrastText: '#8800FF',
-    }
+    },
+    secundary: {
+      main: '#8800FF',
+      light: '#AA4AFF',
+      dark: '#480087',
+      contrastText: '#ffffff',
+    },
   },
-
 });
 
 function Register() {
-  const [count, setCount] = useState(0)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleRegister = () => {
+    if (email && password && confirmPassword && password === confirmPassword) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cadastrado com sucesso!',
+        text: 'Sua conta foi registrada com sucesso!',
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          confirmButton: 'custom-swal-button',
+          icon: 'custom-swal-icon'}
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Preencha todos os campos corretamente!',
+      });
+    }
+  };
+
+  const isFormValid = email !== '' && password !== '' && confirmPassword !== '' && password === confirmPassword;
 
   return (
-    <>
-
-    <div class='formulario'>
-    <div className="gradient"></div>
-      
-      
-        
-      <div class='body-form'>
-        <div class='logo'>
-          <img src={Logo}/>
+    <div className='formulario'>
+      <div className="gradient"></div>
+      <div className='body-form'>
+        <div className='logo'>
+          <img src={Logo} />
         </div>
 
-        <div class="reg-body-form">
-          <div class="title">
-            <div class="title-icon">
-              <Link to="/register" class="link"><KeyboardArrowLeftIcon/></Link>
+        <div className="reg-body-form">
+          <div className="title">
+            <div className="title-icon">
+              <Link to="/register" className="link"><KeyboardArrowLeftIcon/></Link>
             </div>
             <h3>Registre-se</h3>
           </div>
-          
+
           <ThemeProvider theme={theme}>
-            <RegisterAcco />
+            <RegisterAccoForm 
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+            />
+            <div className='botao'>
+              <Button 
+                variant="contained" 
+                fullWidth 
+                sx={{ borderRadius: '20px' }} 
+                color='secundary' 
+                disabled={!isFormValid}
+                onClick={handleRegister}
+              >
+                Finalizar Cadastro
+              </Button>
+            </div>
           </ThemeProvider>
-
         </div>
-
       </div>
-      
     </div>
-    </>
-  )
+  );
 }
 
 function Home() {
@@ -72,10 +110,10 @@ function Home() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/registerAcco" element={<RegisterAcco />} />
+        <Route path="/registerAcco" element={<Register />} />
       </Routes>
     </Router>
   );
 }
 
-export default Register
+export default Register;

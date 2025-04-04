@@ -24,51 +24,47 @@ const theme = createTheme({
       light: '#8800FF',
       dark: '#C37FFF',
       contrastText: '#8800FF',
-    }
+    },
+    secundary: {
+      main: '#8800FF',
+      light: '#AA4AFF',
+      dark: '#480087',
+      contrastText: '#ffffff',
+    },
   },
 })
 
 function Home() {
   return (
     <div className='tela'>
-      
       <div className="gradient"></div>
-      
       <div className='formulario'>
         <div className='img-lateral'>
           <img src={Img} />
         </div>
-
         <div className='body-form'>
           <div className='logo'>
             <img src={Logo} />
           </div>
-          
           <ThemeProvider theme={theme}>
-            
-            <div class='login'>
-              <div class='title-log'>
+            <div className='login'>
+              <div className='title-log'>
                 <h3>Entrar</h3>
               </div>
               <div className="form-login">
                 <Login />
-                <div class="link">
+              </div>
+            </div>
+            <div class="link">
                   <Link to="/register">Não tem conta? Cadastre-se!</Link>
-                </div>
-              </div>
-              
-              <div className='botao'>
-                <Button variant="contained" className='botao' color='button'>Entrar</Button>
-              </div>
             </div>
           </ThemeProvider>
         </div>
-
       </div>
-
     </div>
   );
 }
+
 
 function App() {
   return (

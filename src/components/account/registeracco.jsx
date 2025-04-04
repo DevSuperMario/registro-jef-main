@@ -1,49 +1,47 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import InputMask from 'react-input-mask';
-import { useFormControl } from '@mui/material/FormControl';
-import './registeracco.css'
+import './registeracco.css';
 
-export default function FormPropsTextFields() {
+export default function FormPropsTextFields({ email, setEmail, password, setPassword, confirmPassword, setConfirmPassword }) {
   return (
-    
     <Box
       component="form"
       sx={{ '& .MuiTextField-root': { m : 1, width: '300px' } }}
       noValidate
       autoComplete="off"
     >
-      
-      <div class="dados-conta">
+      <div className="dados-conta">
         <div>
-          <div class='title-sec'>
+          <div className='title-sec'>
             <h4>Dados da Conta</h4>
-            </div>
+          </div>
           <TextField
             required
-            id="outlined-required"
             label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div >
+        <div>
           <TextField 
             required
-            id="outlined-required"
             type="password"
             label="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div >
+        <div>
           <TextField
             required
-            id="outlined-required"
             type="password"
             label="Repita a senha"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
       </div>
-      
     </Box>
   );
 }
