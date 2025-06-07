@@ -41,7 +41,6 @@ function Register() {
 
   const handleNext = () => {
     if (!isValidTelefone || !isValidCPF) {
-      window.alert('Por favor, verifique se o telefone e o CPF estão preenchidos corretamente.');
       return;
     }
 

@@ -59,6 +59,8 @@ function Register() {
         confirmButton: 'custom-swal-button',
         icon: 'custom-swal-icon'
       }
+    }).then(() => {
+      navigate('/'); // <--- redireciona para a rota inicial
     });
   };
 

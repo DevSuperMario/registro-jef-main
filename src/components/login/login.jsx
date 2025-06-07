@@ -7,58 +7,90 @@ import CustomThemeProvider from '../theme/CustomThemeProvider';
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [errors, setErrors] = useState({ email: '', senha: '' });
+
+  const emailRegex = /^\S+@\S+\.\S+$/;
 
   const handleLogin = () => {
-    if (!email || !senha) {
-      alert("Preencha todos os campos!");
-    } else {
-      alert("Login realizado com sucesso!");
-      onLogin(); // Chama a função passada pelo componente pai
+    const newErrors = { email: '', senha: '' };
+
+    if (email.trim() === '') {
+      newErrors.email = 'Campo obrigatório';
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = 'Formato de e-mail inválido';
     }
+
+    if (senha.trim() === '') {
+      newErrors.senha = 'Campo obrigatório';
+    }
+
+    setErrors(newErrors);
+
+    if (newErrors.email || newErrors.senha) return;
+
+    onLogin();
   };
 
   return (
-    <Box
-      component="form"
-      sx={{ '& .MuiTextField-root': { m: 1, width: '300px' } }}
-      noValidate
-      autoComplete="off"
-    >
+    <CustomThemeProvider>
+      <Box
+        component="form"
+        sx={{
+          // centraliza e define largura máxima
+          maxWidth: 400,
+          mx: 'auto',
+          p: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
 
-      <div class="form">
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <TextField
-            label="Senha"
-            id="outlined-password-input"
-            type="password"
-            autoComplete="current-password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-        </div>
+          // responsividade dos campos
+          '& .MuiTextField-root': {
+            my: 1,
+            width: { xs: '100%', sm: '300px' },
+          },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          required
+          label="Email"
+          value={email}
+          onChange={e => {
+            setEmail(e.target.value);
+            if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
+          }}
+          error={!!errors.email}
+          helperText={errors.email}
+        />
 
-        <div className="botao">
+        <TextField
+          required
+          label="Senha"
+          type="password"
+          autoComplete="current-password"
+          value={senha}
+          onChange={e => {
+            setSenha(e.target.value);
+            if (errors.senha) setErrors(prev => ({ ...prev, senha: '' }));
+          }}
+          error={!!errors.senha}
+          helperText={errors.senha}
+        />
+
+        <Box sx={{ width: { xs: '100%', sm: '300px' }, mt: 2 }}>
           <Button
             variant="contained"
-            color="secundary"
+            color="secondary"
             fullWidth
             onClick={handleLogin}
             sx={{ borderRadius: '20px' }}
           >
             Entrar
           </Button>
-        </div>
-
-      </div>
-    </Box>
+        </Box>
+      </Box>
+    </CustomThemeProvider>
   );
 }
