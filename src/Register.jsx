@@ -54,7 +54,7 @@ function Register() {
       <div className="body-form">
         <div className="logo">
           <img src={Logo} alt="Logo" />
-        </div>
+        </div>npm start
 
         <div className="reg-body-form">
           <div className="title">
