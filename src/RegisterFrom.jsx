@@ -1,44 +1,55 @@
 import React, { useState } from 'react';
 
-function RegisterForm() {
-  const [form, setForm] = useState({ email: '', password: '' });
+const RegisterFrom = () => {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    senha: ''
+    // Adicione outros campos conforme necessário
+  });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
- 
-    localStorage.setItem('user', JSON.stringify(form));
-    alert('Cadastro salvo com sucesso!');
+    // Salva os dados no localStorage
+    localStorage.setItem('dadosRegistro', JSON.stringify(formData));
+    alert('Dados salvos no localStorage!');
+    // Aqui você pode adicionar o restante do seu código de envio
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />        cd "registro-jef-main"
-      </div>
-      <div>
-        <label>Senha:</label>
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Cadastrar</button>
+      <input
+        type="text"
+        name="nome"
+        placeholder="Nome"
+        value={formData.nome}
+        onChange={handleChange}
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="senha"
+        placeholder="Senha"
+        value={formData.senha}
+        onChange={handleChange}
+      />
+      {/* Adicione outros campos conforme necessário */}
+      <button type="submit">Registrar</button>
     </form>
   );
-}
+};
 
-export default RegisterForm;
+export default RegisterFrom;
