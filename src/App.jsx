@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import Logo from '../src/assets/GYM.png';
 import Img from '../src/assets/BG.png';
 import Register from './Register';
+import Entrada from './components/Entrada/Entrada';
+<Route path="/entrada" element={<Entrada />} />
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterAcco from './RegisterAcco.jsx'
 import { Link } from "react-router-dom";
@@ -71,6 +73,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/registerAcco" element={<RegisterAcco />} />
+        <Route path="/Entrada" element={<Entrada />} />
       </Routes>
     </Router>
   );

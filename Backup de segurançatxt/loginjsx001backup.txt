@@ -3,13 +3,11 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CustomThemeProvider from '../theme/CustomThemeProvider';
-import { useNavigate } from 'react-router-dom'; // Import necessário
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [errors, setErrors] = useState({ email: '', senha: '' });
-  const navigate = useNavigate(); // Hook para navegação
 
   const emailRegex = /^\S+@\S+\.\S+$/;
 
@@ -30,11 +28,7 @@ export default function Login({ onLogin }) {
 
     if (newErrors.email || newErrors.senha) return;
 
-    onLogin && onLogin();
-    navigate('/'); // Redireciona para a página inicial
-
-    onLogin && onLogin();
-    navigate('/entrada');
+    onLogin();
   };
 
   return (
@@ -42,12 +36,15 @@ export default function Login({ onLogin }) {
       <Box
         component="form"
         sx={{
+          // centraliza e define largura máxima
           maxWidth: 400,
           mx: 'auto',
           p: 2,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+
+          // responsividade dos campos
           '& .MuiTextField-root': {
             my: 1,
             width: { xs: '100%', sm: '300px' },
