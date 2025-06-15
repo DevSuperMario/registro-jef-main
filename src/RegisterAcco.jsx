@@ -1,12 +1,6 @@
-import { useState } from 'react';
-import './RegisterAcco.css';
-import { createTheme, ThemeProvider, Button } from '@mui/material';
-import Logo from '../src/assets/GYM.png';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import App from './App.jsx';
-import RegisterAccoForm from './components/account/registeracco.jsx';
-import { Link } from 'react-router-dom';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import React, { useState } from 'react';
+import { createTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const theme = createTheme({
@@ -37,6 +31,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailValid, setEmailValid] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = () => {
     if (!emailValid) {
@@ -49,6 +44,11 @@ function Register() {
       return;
     }
 
+    // Salvar no localStorage
+    const listaCadastro = JSON.parse(localStorage.getItem('listaCadastro')) || [];
+    listaCadastro.push({ email, password });
+    localStorage.setItem('listaCadastro', JSON.stringify(listaCadastro));
+
     Swal.fire({
       icon: 'success',
       title: 'Cadastrado com sucesso!',
@@ -60,66 +60,55 @@ function Register() {
         icon: 'custom-swal-icon'
       }
     }).then(() => {
-      navigate('/'); // <--- redireciona para a rota inicial
+      navigate('/');
     });
   };
 
   const isFormValid = email !== '' && password !== '' && confirmPassword !== '';
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setEmailValid(/\S+@\S+\.\S+/.test(e.target.value));
+  };
+
   return (
-    <div className='formulario'>
-      <div className="gradient"></div>
-      <div className='body-form'>
-        <div className='logo'>
-          <img src={Logo} />
-        </div>
-
-        <div className="reg-body-form">
-          <div className="title">
-            <div className="title-icon">
-              <Link to="/register" className="link"><KeyboardArrowLeftIcon /></Link>
-            </div>
-            <h3>Registre-se</h3>
-          </div>
-
-          <ThemeProvider theme={theme}>
-            <RegisterAccoForm
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              confirmPassword={confirmPassword}
-              setConfirmPassword={setConfirmPassword}
-              setEmailValid={setEmailValid}
-            />
-            <div className='botao'>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{ borderRadius: '20px' }}
-                color='secundary'
-                disabled={!isFormValid}
-                onClick={handleRegister}
-              >
-                Finalizar Cadastro
-              </Button>
-            </div>
-          </ThemeProvider>
-        </div>
+    <div>
+      <h2>Registre-se</h2>
+      <div>
+        <label>Email *</label>
+        <input
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
       </div>
+      <div>
+        <label>Senha *</label>
+        <input
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Repita a senha *</label>
+        <input
+          type="password"
+          value={confirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button
+        onClick={handleRegister}
+        disabled={!isFormValid}
+        style={{ marginTop: '16px' }}
+      >
+        FINALIZAR CADASTRO
+      </button>
     </div>
-  );
-}
-
-function Home() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/registerAcco" element={<Register />} />
-      </Routes>
-    </Router>
   );
 }
 
