@@ -39,12 +39,12 @@ function Register() {
 
   const handleRegister = () => {
     if (!emailValid) {
-      alert('Por favor, insira um email válido!');
+      setErroSenha('Por favor, insira um email válido!');
       return;
     }
 
     if (password !== confirmPassword) {
-      alert('As senhas precisam ser iguais!');
+      setErroSenha('As senhas precisam ser iguais!');
       return;
     }
 

@@ -14,28 +14,39 @@ export default function Login({ onLogin }) {
   const emailRegex = /^\S+@\S+\.\S+$/;
 
   const handleLogin = () => {
-    const newErrors = { email: '', senha: '' };
+  const newErrors = { email: '', senha: '' };
 
-    if (email.trim() === '') {
-      newErrors.email = 'Campo obrigatório';
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = 'Formato de e-mail inválido';
-    }
+  if (email.trim() === '') {
+    newErrors.email = 'Campo obrigatório';
+  } else if (!emailRegex.test(email)) {
+    newErrors.email = 'Formato de e-mail inválido';
+  }
 
-    if (senha.trim() === '') {
-      newErrors.senha = 'Campo obrigatório';
-    }
+  if (senha.trim() === '') {
+    newErrors.senha = 'Campo obrigatório';
+  }
 
-    setErrors(newErrors);
+  setErrors(newErrors);
 
-    if (newErrors.email || newErrors.senha) return;
+  if (newErrors.email || newErrors.senha) return;
 
-    onLogin && onLogin();
-    navigate('/'); // Redireciona para a página inicial
+  // Validação com localStorage
+  const listaCadastro = JSON.parse(localStorage.getItem('listaCadastro')) || [];
+  const usuarioValido = listaCadastro.find(
+    (user) => user.email === email && user.password === senha
+  );
 
-    onLogin && onLogin();
-    navigate('/entrada');
-  };
+  if (!usuarioValido) {
+    setErrors({
+      email: '',
+      senha: 'E-mail ou senha incorretos',
+    });
+    return;
+  }
+
+  onLogin && onLogin();
+  navigate('/entrada');
+};
 
   return (
     <CustomThemeProvider>
@@ -90,6 +101,8 @@ export default function Login({ onLogin }) {
             onClick={handleLogin}
             sx={{ borderRadius: '20px' }}
           >
+
+            
             Entrar
           </Button>
         </Box>
