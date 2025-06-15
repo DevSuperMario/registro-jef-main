@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { createTheme } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import './RegisterAcco.css';
+import { createTheme, ThemeProvider, Button } from '@mui/material';
+import Logo from '../src/assets/GYM.png';
+import { useNavigate, Link } from 'react-router-dom';
+import RegisterAccoForm from './components/account/registeracco.jsx';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import Swal from 'sweetalert2';
 
 const theme = createTheme({
@@ -66,48 +70,47 @@ function Register() {
 
   const isFormValid = email !== '' && password !== '' && confirmPassword !== '';
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailValid(/\S+@\S+\.\S+/.test(e.target.value));
-  };
-
   return (
-    <div>
-      <h2>Registre-se</h2>
-      <div>
-        <label>Email *</label>
-        <input
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-        />
+    <div className='formulario'>
+      <div className="gradient"></div>
+      <div className='body-form'>
+        <div className='logo'>
+          <img src={Logo} alt="Logo" />
+        </div>
+
+        <div className="reg-body-form">
+          <div className="title">
+            <div className="title-icon">
+              <Link to="/register" className="link"><KeyboardArrowLeftIcon /></Link>
+            </div>
+            <h3>Registre-se</h3>
+          </div>
+
+          <ThemeProvider theme={theme}>
+            <RegisterAccoForm
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+              setEmailValid={setEmailValid}
+            />
+            <div className='botao'>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ borderRadius: '20px' }}
+                color='secundary'
+                disabled={!isFormValid}
+                onClick={handleRegister}
+              >
+                Finalizar Cadastro
+              </Button>
+            </div>
+          </ThemeProvider>
+        </div>
       </div>
-      <div>
-        <label>Senha *</label>
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Repita a senha *</label>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button
-        onClick={handleRegister}
-        disabled={!isFormValid}
-        style={{ marginTop: '16px' }}
-      >
-        FINALIZAR CADASTRO
-      </button>
     </div>
   );
 }
